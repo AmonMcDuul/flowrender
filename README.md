@@ -122,6 +122,7 @@ You can override these CSS rules in your app's stylesheet.
 
 ## Architecture Overview
 
+```ts
 src/
 ├── core/
 │   └── types.ts          # FlowData and related interfaces (single source of truth)
@@ -134,6 +135,7 @@ src/
 ├── interactions/
 │   └── zoomPan.ts        # Handles zooming and panning (wheel + drag)
 └── renderFlowToSVG.ts    # Main high-level rendering entry point (glues everything)
+```
 
 Each layer is independent and can be swapped, tested, or extended.
 
