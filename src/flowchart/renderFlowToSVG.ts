@@ -5,11 +5,20 @@ import { enableZoomPan } from './interactions/zoomPan';
 import { injectStyle } from './rendering/style';
 import type { FlowData } from '../core/types';
 
+export interface RenderOptions {
+  direction?: 'TB' | 'LR' | 'BT' | 'RL';
+  fitToView?: boolean;
+}
+
+export interface RenderResult {
+  svg: SVGSVGElement;
+  viewBox: number[];
+}
 export function renderFlowToSVG(
   flow: FlowData,
   container: HTMLElement,
-  options?: { direction?: 'TB'|'LR'|'BT'|'RL', fitToView?: boolean }
-) {
+  options?: RenderOptions
+): RenderResult {
   const dir = options?.direction ?? 'TB';
   const g = computeLayout(flow, dir);
 
@@ -132,6 +141,6 @@ export function renderFlowToSVG(
 
   enableZoomPan(svg, { initialViewBox: vb });
   injectStyle(svg);
-
+  
   return { svg, viewBox: vb };
 }
